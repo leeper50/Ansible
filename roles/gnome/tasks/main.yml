@@ -1,0 +1,49 @@
+- name: Set clock format
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/clock-format"
+    value: "'24h'"
+
+- name: Use normal scrolling
+  community.general.dconf:
+    key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
+    value: "false"
+
+- name: Set favorites bar
+  community.general.dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop']"
+
+- name: Enable tap to click
+  community.general.dconf:
+    key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+    value: "true"
+
+- name: Disable screensaver
+  community.general.dconf:
+    key: "/org/gnome/desktop/screensaver/idle-activation-enabled"
+    value: "false"
+
+- name: Disable idle mode
+  community.general.dconf:
+    key: "/org/gnome/desktop/session/idle-delay"
+    value: uint32 0
+
+- name: Set app switching
+  community.general.dconf:
+    key: "/org/gnome/shell/app-switcher/current-workspace-only"
+    value: "true"
+
+- name: Set workspace multi-monitor support
+  community.general.dconf:
+    key: "/org/gnome/mutter/workspaces-only-on-primary"
+    value: "false"
+
+- name: Set application switch
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-applications"
+    value: "['<Super>Tab']"
+
+- name: Set window switch
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-windows"
+    value: "['<Alt>Tab']"

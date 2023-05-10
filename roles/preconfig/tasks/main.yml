@@ -1,0 +1,11 @@
+- name: Add password feedback
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: '^Defaults    env_reset'
+    line: Defaults    env_reset,pwfeedback
+
+- name: Add password feedback if tab
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    regexp: '^Defaults\tenv_reset'
+    line: Defaults    env_reset,pwfeedback

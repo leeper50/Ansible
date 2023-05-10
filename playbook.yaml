@@ -1,0 +1,20 @@
+- name: Package Management
+  hosts: workstations
+  become: true
+  become_user: root
+  tasks:
+    - name: Pre Config
+      ansible.builtin.import_role:
+        name: preconfig
+    - name: Package Management
+      ansible.builtin.import_role:
+        name: packages
+    - name: Enable & Harden SSH
+      ansible.builtin.import_role:
+        name: ssh
+    - name: Configure Gnome
+      ansible.builtin.import_role:
+        name: gnome
+    - name: Post Config
+      ansible.builtin.import_role:
+        name: postconfig

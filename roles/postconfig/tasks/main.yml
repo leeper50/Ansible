@@ -1,0 +1,32 @@
+- name: Check if .bash_aliases exists
+  ansible.builtin.file:
+    path: "/home/{{ user }}/.bash_aliases"
+    state: touch
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0644'
+
+- name: Alias poweroff
+  ansible.builtin.lineinfile:
+    line: "alias poweroff='systemctl poweroff'"
+    dest: "/home/{{ user }}/.bash_aliases"
+
+- name: Alias reboot
+  ansible.builtin.lineinfile:
+    line: "alias reboot='systemctl reboot'"
+    dest: "/home/{{ user }}/.bash_aliases"
+
+- name: Alias logout
+  ansible.builtin.lineinfile:
+    line: "alias logout='/usr/bin/gnome-session-quit'"
+    dest: "/home/{{ user }}/.bash_aliases"
+
+- name: Export nano as editor
+  ansible.builtin.lineinfile:
+    line: "export EDITOR=nano"
+    dest: "/home/{{ user }}/.bashrc"
+
+- name: Add .local/bin to path
+  ansible.builtin.lineinfile:
+    line: "export PATH=\"$PATH:$HOME/.local/bin\""
+    dest: "/home/{{ user }}/.bashrc"

@@ -1,0 +1,25 @@
+- name: Apt
+  ansible.builtin.apt:
+    state: present
+    name: "{{ get_apt }}"
+    update_cache: true
+- name: Flathub
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+- name: Flatpaks
+  community.general.flatpak:
+    state: present
+    remote: flathub
+    name: "{{ get_flatpak }}"
+- name: Snap
+  community.general.snap:
+    state: present
+    name: "{{ get_snap }}"
+- name: Snap Classic
+  community.general.snap:
+    state: present
+    classic: true
+    name: "{{ get_snap_classic }}"

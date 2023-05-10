@@ -1,0 +1,41 @@
+- name: Start ssh service
+  ansible.builtin.service:
+    name: ssh
+    state: started
+    enabled: true
+
+- name: Secure ssh | disable passwordauth
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: PasswordAuthentication no
+
+- name: Secure ssh | no empty passwords
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitEmptyPasswords'
+    line: PermitEmptyPasswords no
+
+- name: Secure ssh | limit tries
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^MaxAuthTries'
+    line: MaxAuthTries 3
+
+- name: Secure ssh | time limit
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^LoginGraceTime'
+    line: LoginGraceTime 20
+
+- name: Secure ssh | no X11
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^X11Forwarding'
+    line: X11Forwarding no
+
+- name: Secure ssh | no root
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: PermitRootLogin no

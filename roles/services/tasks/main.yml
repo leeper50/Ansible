@@ -1,0 +1,10 @@
+- name: Start syncthing for {{ user }}
+  ansible.builtin.service:
+    name: "syncthing@{{ user }}"
+    state: started
+    enabled: true
+- name: Start tor daemon
+  ansible.builtin.service:
+    name: tor
+    state: started
+    enabled: true
